@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetProject.IdentityServer.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.IdentityServer.Host", "src\PetProject.IdentityServer\src\PetProject.IdentityServer.Host\PetProject.IdentityServer.Host.csproj", "{47DFD1C3-F8FF-4978-B523-E2BBA89C2B1B}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FC51EAD8-C657-4A4F-AC53-908E8D539296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{47DFD1C3-F8FF-4978-B523-E2BBA89C2B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47DFD1C3-F8FF-4978-B523-E2BBA89C2B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47DFD1C3-F8FF-4978-B523-E2BBA89C2B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC51EAD8-C657-4A4F-AC53-908E8D539296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC51EAD8-C657-4A4F-AC53-908E8D539296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC51EAD8-C657-4A4F-AC53-908E8D539296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC51EAD8-C657-4A4F-AC53-908E8D539296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
