@@ -1,0 +1,17 @@
+version: '3.4'
+
+networks:
+  pet-project:
+    name: pet-project-network
+    external: true
+
+services:
+  identityserver.dbmigrator:
+    image: ${DOCKER_REGISTRY-}identity-server-dbmigrator
+    build:
+      context: .
+      dockerfile: src/PetProject.IdentityServer.DbMigrator/Dockerfile
+    environment:
+      - 'CONNECTION_STRING=Server=postgres;Port=5432;Username=postgres;Password=password;Database=PetProject.IdentityServer'
+    networks:
+      - pet-project

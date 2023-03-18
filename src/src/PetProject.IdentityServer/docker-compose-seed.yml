@@ -1,0 +1,18 @@
+version: '3.4'
+
+networks:
+  pet-project:
+    name: pet-project-network
+    external: true
+
+services:
+  identityserver.dbmseeder:
+    image: ${DOCKER_REGISTRY-}identity-server-dbseeder
+    build:
+      context: .
+      dockerfile: src/PetProject.IdentityServer.DbSeeder/Dockerfile
+    environment:
+      - 'CONNECTION_STRING=Server=postgres;Port=5432;Username=postgres;Password=password;Database=PetProject.IdentityServer'
+    networks:
+      - pet-project
+      
