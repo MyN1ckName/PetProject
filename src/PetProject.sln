@@ -9,9 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetProject.IdentityServer",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{395A3708-ECC7-451B-8499-A75730F5CE1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.IdentityServer.Database", "src\PetProject.IdentityServer\src\PetProject.IdentityServer.Database\PetProject.IdentityServer.Database.csproj", "{052A358A-7354-4C9C-A801-F97800EFACF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetProject.IdentityServer.Database", "src\PetProject.IdentityServer\src\PetProject.IdentityServer.Database\PetProject.IdentityServer.Database.csproj", "{052A358A-7354-4C9C-A801-F97800EFACF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.IdentityServer.Domain", "src\PetProject.IdentyServer\src\PetProject.IdentityServer.Domain\PetProject.IdentityServer.Domain.csproj", "{B0FA26D4-FE78-42D8-B943-7350D8141280}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetProject.IdentityServer.DbMigrator", "src\PetProject.IdentityServer\src\PetProject.IdentityServer.DbMigrator\PetProject.IdentityServer.DbMigrator.csproj", "{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.IdentityServer.Domain", "src\PetProject.IdentityServer\src\PetProject.IdentityServer.Domain\PetProject.IdentityServer.Domain.csproj", "{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,14 @@ Global
 		{052A358A-7354-4C9C-A801-F97800EFACF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{052A358A-7354-4C9C-A801-F97800EFACF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{052A358A-7354-4C9C-A801-F97800EFACF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0FA26D4-FE78-42D8-B943-7350D8141280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0FA26D4-FE78-42D8-B943-7350D8141280}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0FA26D4-FE78-42D8-B943-7350D8141280}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0FA26D4-FE78-42D8-B943-7350D8141280}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,7 +41,8 @@ Global
 		{79DA0A10-5C62-4C9C-9CD0-4781CFAAB7AD} = {E3AE3895-0EBC-4399-A4CC-7D96180B9C76}
 		{395A3708-ECC7-451B-8499-A75730F5CE1B} = {79DA0A10-5C62-4C9C-9CD0-4781CFAAB7AD}
 		{052A358A-7354-4C9C-A801-F97800EFACF1} = {395A3708-ECC7-451B-8499-A75730F5CE1B}
-		{B0FA26D4-FE78-42D8-B943-7350D8141280} = {395A3708-ECC7-451B-8499-A75730F5CE1B}
+		{AC3CD18A-80A9-4AD2-8977-55E9F7A89EB5} = {395A3708-ECC7-451B-8499-A75730F5CE1B}
+		{F4E1885E-2DA7-4D6B-AABE-0092087B6E7E} = {395A3708-ECC7-451B-8499-A75730F5CE1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73CDF8D9-FE9B-4287-AA6F-3EEAE973DECD}
