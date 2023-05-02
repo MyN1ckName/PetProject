@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IdentityServer.DbSeeder": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "CONNECTION_STRING": "Server=localhost;Port=5432;Username=postgres;Password=password;Database=PetProject.IdentityServer"
+      }
+    }
+  }
+}
