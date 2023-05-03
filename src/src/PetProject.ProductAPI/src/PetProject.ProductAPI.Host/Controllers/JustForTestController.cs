@@ -20,7 +20,7 @@ public class JustForTestController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult SeedProducts()
+    public async Task<IActionResult> SeedProducts()
     {
         var product = new Product
         {
@@ -28,6 +28,8 @@ public class JustForTestController : ControllerBase
             Category = new Category { Value = "category 1" },
             Price = new Price(10),
         };
+
+        await _productRepository.InsertOneAsync(product);
 
         return Ok();
     }

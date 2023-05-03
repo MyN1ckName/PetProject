@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddProductApiMongoDb(options =>
 {
     options.ConnectionString = "mongodb://localhost:27017";
-    options.DatabaseName = "ProductAPI.Database";
+    options.DatabaseName = "ProductApiDatabase";
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
