@@ -19,6 +19,13 @@ public class JustForTestController : ControllerBase
         _productRepository = productRepository;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var products = await _productRepository.GetAllAsync();
+        return Ok(products);
+    }
+
     [HttpPost]
     public async Task<IActionResult> SeedProducts()
     {

@@ -4,5 +4,6 @@ namespace PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
 public interface IProductRepository : IRepository
 {
+    Task<List<Entity.Product>> GetAllAsync();
     Task InsertOneAsync(Entity.Product product);
 }

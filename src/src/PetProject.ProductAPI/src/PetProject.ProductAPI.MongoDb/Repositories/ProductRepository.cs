@@ -13,6 +13,11 @@ public class ProductRepository : IProductRepository
         _collection = context.Collection();
     }
 
+    public async Task<List<Product>> GetAllAsync()
+    {
+       return await _collection.AsQueryable().ToListAsync();
+    }
+
     public async Task InsertOneAsync(Product product)
     {
         await _collection.InsertOneAsync(product);
