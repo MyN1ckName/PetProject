@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.ProductAPI.Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.ProductAPI.MongoDb", "src\PetProject.ProductAPI\src\PetProject.ProductAPI.MongoDb\PetProject.ProductAPI.MongoDb.csproj", "{4E16DA18-DF1D-4D2E-BE1B-546B973310DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetProject.ProductAPI.Host", "src\PetProject.ProductAPI\src\PetProject.ProductAPI.Host\PetProject.ProductAPI.Host.csproj", "{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{4E16DA18-DF1D-4D2E-BE1B-546B973310DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E16DA18-DF1D-4D2E-BE1B-546B973310DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E16DA18-DF1D-4D2E-BE1B-546B973310DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{8AC4F20A-9A1B-4C6A-9755-234909E283DA} = {B551BF58-E83D-4FE3-B3A4-30B41C13445F}
 		{C687EF76-C70B-4339-9CA1-74B47B11FB49} = {8AC4F20A-9A1B-4C6A-9755-234909E283DA}
 		{4E16DA18-DF1D-4D2E-BE1B-546B973310DB} = {8AC4F20A-9A1B-4C6A-9755-234909E283DA}
+		{AFC9C032-71B2-4CD9-91A3-65E3CB26CAFD} = {8AC4F20A-9A1B-4C6A-9755-234909E283DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73CDF8D9-FE9B-4287-AA6F-3EEAE973DECD}
