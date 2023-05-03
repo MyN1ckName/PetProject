@@ -2,15 +2,15 @@
 
 public class Price
 {
-    public const float MIN_PRICE = 9.99f;
-    public Price(float price)
+    public const double MIN_PRICE = 9.99f;
+    public Price(double price)
     {
         if (Validate(price))
             Value = price;
     }
-    public float Value { get; }
+    public double Value { get; init; }
 
-    private bool Validate(float price)
+    private bool Validate(double price)
     {
         if (price >= MIN_PRICE)
             return true;

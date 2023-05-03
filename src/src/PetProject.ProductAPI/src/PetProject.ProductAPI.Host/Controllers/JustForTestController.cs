@@ -26,7 +26,7 @@ public class JustForTestController : ControllerBase
         {
             Name = new Name { Value = "product 1" },
             Category = new Category { Value = "category 1" },
-            Price = new Price(10),
+            Price = new Price(14.99f),
         };
 
         await _productRepository.InsertOneAsync(product);
