@@ -12,4 +12,9 @@ public class ProductRepository : IProductRepository
     {
         _collection = context.Collection();
     }
+
+    public async Task InsertOneAsync(Product product)
+    {
+        await _collection.InsertOneAsync(product);
+    }
 }
