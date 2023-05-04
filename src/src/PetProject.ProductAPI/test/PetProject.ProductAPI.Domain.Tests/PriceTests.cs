@@ -1,19 +1,22 @@
 ﻿namespace PetProject.ProductAPI.Domain.Tests;
 public class PriceTests
 {
-    [Fact]
-    public void Price_more_minimum()
+    [InlineData(9.99f)]
+    [InlineData(10f)]
+    [InlineData(999.999f)]
+    [Theory]
+    public void This_price_is_valid(double value)
     {
-        var value = 10f;
-        var price = new Price(value);
-
-        Assert.Equal(value, price.Value);
+        var sut = new Price(value); // SUT - system under test
+        sut.Value.Should().Be(value);
     }
 
-    [Fact]
-    public void Price_less_minimum()
+    [InlineData(-1)]
+    [InlineData(0)]
+    [InlineData(9.98f)]
+    [Theory]
+    public void This_price_is_invalid(double value)
     {
-        var value = 9.98f;
         Assert.Throws<ArgumentException>(() => new Price(value));
     }
 }
