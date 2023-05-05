@@ -17,6 +17,7 @@ public class PriceTests
     [Theory]
     public void This_price_is_invalid(double value)
     {
-        Assert.Throws<ArgumentException>(() => new Price(value));
+        Action action = () => new Price(value);
+        action.Should().Throw<ArgumentException>();
     }
 }
