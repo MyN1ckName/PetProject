@@ -3,22 +3,16 @@
 public class Price
 {
     public const double MIN_PRICE = 9.99f;
-    private double _value;
 
     public Price(double price)
     {
-        Value = price;
+        if (IsValidPrice(price))
+            Value = price;
+        else
+            throw new ArgumentException(nameof(price));
     }
 
-    public double Value
-    {
-        get => _value;
-        set
-        {
-            if (value >= MIN_PRICE)
-                _value = value;
-            else
-                throw new ArgumentException(nameof(value));
-        }
-    }
+    public double Value { get; init; }
+
+    private bool IsValidPrice(double price) => price >= MIN_PRICE;
 }
