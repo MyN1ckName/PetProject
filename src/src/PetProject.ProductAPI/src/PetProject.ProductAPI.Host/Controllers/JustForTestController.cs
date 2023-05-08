@@ -29,15 +29,31 @@ public class JustForTestController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> SeedProducts()
     {
-        var product = new Product
+        var product1 = new Product
         {
             Name = new Name { Value = "product 1" },
             Category = new Category { Value = "category 1" },
             Price = new Price(14.99f),
         };
 
-        await _productRepository.InsertOneAsync(product);
+        var product2 = new Product
+        {
+            Name = new Name { Value = "product 2" },
+            Category = new Category { Value = "category 1" },
+            Price = new Price(24.99),
+        };
 
-        return Ok();
+        var product3 = new Product
+        {
+            Name = new Name { Value = "product 3" },
+            Category = new Category { Value = "category 2" },
+            Price = new Price(99.99f),
+        };
+
+        await _productRepository.InsertOneAsync(product1);
+        await _productRepository.InsertOneAsync(product2);
+        await _productRepository.InsertOneAsync(product3);
+
+        return StatusCode(201);
     }
 }
