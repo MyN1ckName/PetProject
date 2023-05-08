@@ -1,4 +1,5 @@
 using PetProject.ProductAPI.MongoDb.Extensions;
+using PetProject.ProductAPI.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddProductApiMongoDb(options =>
     options.ConnectionString = "mongodb://localhost:27017";
     options.DatabaseName = "ProductApiDatabase";
 });
+
+builder.Services.AddProductApplicatio();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

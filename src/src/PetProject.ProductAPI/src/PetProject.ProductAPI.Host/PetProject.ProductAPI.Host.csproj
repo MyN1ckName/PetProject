@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PetProject.ProductAPI.Application\PetProject.ProductAPI.Application.csproj" />
     <ProjectReference Include="..\PetProject.ProductAPI.Domain\PetProject.ProductAPI.Domain.csproj" />
     <ProjectReference Include="..\PetProject.ProductAPI.MongoDb\PetProject.ProductAPI.MongoDb.csproj" />
   </ItemGroup>
