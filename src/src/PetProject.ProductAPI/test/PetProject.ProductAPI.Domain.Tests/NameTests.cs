@@ -23,7 +23,7 @@ public class NameTests
     public void Name_more_max_lenght_is_invalid()
     {
         var name = new string('a', Name.MAX_NAME_LENGTH + 1);
-        var sut = new Name(name);
-        sut.Value.Should().Be(name);
+        var action = () => new Name(name);
+        action.Should().Throw<ArgumentException>();
     }
 }
