@@ -3,7 +3,7 @@ using PetProject.ProductAPI.Application.Contracts.Interfaces;
 
 namespace PetProject.ProductAPI.Application.Services;
 
-public class ProductAppService : IProductService
+public class ProductAppService : IProductAppService
 {
     public Task<List<ProductDto>> GetAllAsync()
     {

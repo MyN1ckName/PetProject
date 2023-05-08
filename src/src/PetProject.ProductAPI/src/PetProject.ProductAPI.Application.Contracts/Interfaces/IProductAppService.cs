@@ -2,7 +2,7 @@
 
 namespace PetProject.ProductAPI.Application.Contracts.Interfaces;
 
-public interface IProductService
+public interface IProductAppService
 {
     Task<List<ProductDto>> GetAllAsync();
 }
