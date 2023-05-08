@@ -11,6 +11,6 @@ internal class AutomapperProfile : Profile
         CreateMap<Product, ProductDto>()
             .ForMember(x => x.Name, opt => opt.MapFrom(y => y.Name.Value))
             .ForMember(x => x.Category, opt => opt.MapFrom(y => y.Category.Value))
-            .ForMember(x => x.Price, opt => opt.MapFrom(y => y.Price.Value));
+            .ForMember(x => x.Price, opt => opt.MapFrom(y => Math.Round(y.Price.Value, 2)));
     }
 }
