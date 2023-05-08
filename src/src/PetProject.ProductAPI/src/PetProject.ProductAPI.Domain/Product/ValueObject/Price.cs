@@ -19,7 +19,7 @@ public class Price
             if (value >= MIN_PRICE)
                 _value = value;
             else
-                throw new ArgumentException(nameof(value));
+                throw new ArgumentException("the price is below the minimum");
         }
     }
 }
