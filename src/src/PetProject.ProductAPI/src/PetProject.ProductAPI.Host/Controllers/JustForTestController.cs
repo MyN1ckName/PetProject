@@ -31,21 +31,21 @@ public class JustForTestController : ControllerBase
     {
         var product1 = new Product
         {
-            Name = new Name { Value = "product 1" },
+            Name = new Name ("product 1"),
             Category = new Category { Value = "category 1" },
             Price = new Price(14.99f),
         };
 
         var product2 = new Product
         {
-            Name = new Name { Value = "product 2" },
+            Name = new Name ("product 2"),
             Category = new Category { Value = "category 1" },
             Price = new Price(24.99),
         };
 
         var product3 = new Product
         {
-            Name = new Name { Value = "product 3" },
+            Name = new Name ("product 3"),
             Category = new Category { Value = "category 2" },
             Price = new Price(99.99f),
         };
