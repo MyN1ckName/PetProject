@@ -10,16 +10,22 @@ namespace PetProject.ProductAPI.Application.Services;
 public class ProductAppService : IProductAppService
 {
     private readonly ILogger _logger;
-    private readonly IProductRepository _productRepository;
+    private readonly IProductRepository<Guid> _productRepository;
     private readonly IMapper _mapper;
     public ProductAppService(
         ILogger<ProductAppService> logger,
-        IProductRepository productRepository,
+        IProductRepository<Guid> productRepository,
         IMapper mapper)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    }
+
+    public async Task<ProductDto> GetAsync(Guid id)
+    {
+        var product = await _productRepository.GetAsync(id);
+        return _mapper.Map<Product, ProductDto>(product);
     }
 
     public async Task<List<ProductDto>> GetAllAsync()
@@ -32,5 +38,17 @@ public class ProductAppService : IProductAppService
     {
         var product = new Product(input.Name, input.Category, input.Price);
         await _productRepository.InsertOneAsync(product);
+    }
+
+    public async Task UpdateOneAsync(ProductDto input)
+    {
+        var product = await _productRepository.GetAsync(input.Id);
+
+        product
+            .SetName(input.Name)
+            .SetCategory(input.Category)
+            .SetPrice(input.Price);
+
+        await _productRepository.UpdateOneAsync(product);
     }
 }

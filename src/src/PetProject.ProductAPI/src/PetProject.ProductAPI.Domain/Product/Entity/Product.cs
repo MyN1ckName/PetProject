@@ -14,4 +14,22 @@ public class Product : EntityBase<Guid>
     public Name Name { get; private set; }
     public Category Category { get; private set; }
     public Price Price { get; private set; }
+
+    public Product SetName(string name)
+    {
+        Name = new Name(name);
+        return this;
+    }
+
+    public Product SetCategory(string categoryName)
+    {
+        Category = new Category(categoryName);
+        return this;
+    }
+
+    public Product SetPrice(double price)
+    {
+        Price = new Price(price);
+        return this;
+    }
 }

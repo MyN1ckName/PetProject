@@ -2,6 +2,6 @@
 
 namespace PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
-public interface IProductRepository : IRepository<Entity.Product>
+public interface IProductRepository<TKey> : IRepository<Entity.Product, TKey>
 {
 }

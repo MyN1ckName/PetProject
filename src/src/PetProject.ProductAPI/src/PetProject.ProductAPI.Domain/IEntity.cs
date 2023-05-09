@@ -1,6 +1,6 @@
 ﻿namespace PetProject.ProductAPI.Domain;
 
-public interface IEntity<T>
+public interface IEntity<TKey>
 {
-    T Id { get; init; }
+    TKey Id { get; init; }
 }

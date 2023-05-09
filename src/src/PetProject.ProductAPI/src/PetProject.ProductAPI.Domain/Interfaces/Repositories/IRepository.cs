@@ -1,7 +1,9 @@
 ﻿namespace PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
-public interface IRepository<T> where T : class
+public interface IRepository<TEntity, TKey>
 {
-    Task<List<T>> GetAllAsync();
-    Task InsertOneAsync(T entity);
+    Task<TEntity> GetAsync(TKey key);
+    Task<List<TEntity>> GetAllAsync();
+    Task InsertOneAsync(TEntity entity);
+    Task UpdateOneAsync(TEntity entity);
 }

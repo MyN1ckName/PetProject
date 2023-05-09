@@ -19,6 +19,14 @@ namespace PetProject.ProductAPI.Host.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetAsync(Guid id)
+        {
+            var product = await _productAppService.GetAsync(id);
+            return Ok(product);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
             var products = await _productAppService.GetAllAsync();
@@ -30,6 +38,13 @@ namespace PetProject.ProductAPI.Host.Controllers
         {
             await _productAppService.InsertOneAsync(input);
             return StatusCode(StatusCodes.Status201Created);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateOneAsync([FromBody] ProductDto product)
+        {
+            await _productAppService.UpdateOneAsync(product);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }
