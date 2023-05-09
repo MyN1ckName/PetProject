@@ -53,3 +53,18 @@ services:
       - '5050:80'
     volumes:
       - ./pgadmin4/servers.json:/pgadmin4/servers.json
+
+  productapi:
+    environment:
+       ASPNETCORE_ENVIRONMENT: Development
+       ASPNETCORE_URLS: https://+:443;http://+:80
+       CONNECTION_STRING: mongodb://localhost:27017
+       DATABASE_NAME: ProductApiDatabase
+    ports:
+      - '5002:80'
+      - '5003:443'
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - pet-project
