@@ -9,8 +9,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddProductApiMongoDb(options =>
 {
-    options.ConnectionString = "mongodb://localhost:27017";
-    options.DatabaseName = "ProductApiDatabase";
+    options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+    options.DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME");
 });
 
 builder.Services.AddProductApplicatio();
