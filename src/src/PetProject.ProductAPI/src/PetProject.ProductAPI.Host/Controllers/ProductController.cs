@@ -46,5 +46,13 @@ namespace PetProject.ProductAPI.Host.Controllers
             await _productAppService.UpdateOneAsync(product);
             return StatusCode(StatusCodes.Status204NoContent);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteOneAsync(Guid id)
+        {
+            await _productAppService.DeleteOneAsync(id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 }

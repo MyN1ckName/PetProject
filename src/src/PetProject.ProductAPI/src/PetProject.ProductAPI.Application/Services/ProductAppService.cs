@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using PetProject.ProductAPI.Application.Contracts.Dto.Product;
-using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Domain.Product.Entity;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
+using PetProject.ProductAPI.Application.Contracts.Interfaces;
+using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Application.Services;
 
@@ -50,5 +50,10 @@ public class ProductAppService : IProductAppService
             .SetPrice(input.Price);
 
         await _productRepository.UpdateOneAsync(product);
+    }
+
+    public async Task DeleteOneAsync(Guid id)
+    {
+        await _productRepository.DeleteOneAsync(id);
     }
 }

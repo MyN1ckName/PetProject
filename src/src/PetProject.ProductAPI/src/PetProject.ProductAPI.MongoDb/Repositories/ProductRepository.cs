@@ -47,7 +47,13 @@ public class ProductRepository : IProductRepository<Guid>
             .Set(x => x.Name, product.Name)
             .Set(x => x.Category, product.Category)
             .Set(x => x.Price, product.Price);
-        
+
         await _collection.UpdateOneAsync(filter, update);
+    }
+
+    public async Task DeleteOneAsync(Guid id)
+    {
+        var filter = Builders<Product>.Filter.Where(x => x.Id == id);
+        await _collection.DeleteOneAsync(filter);
     }
 }

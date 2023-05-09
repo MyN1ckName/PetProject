@@ -6,4 +6,5 @@ public interface IRepository<TEntity, TKey>
     Task<List<TEntity>> GetAllAsync();
     Task InsertOneAsync(TEntity entity);
     Task UpdateOneAsync(TEntity entity);
+    Task DeleteOneAsync(TKey key);
 }
