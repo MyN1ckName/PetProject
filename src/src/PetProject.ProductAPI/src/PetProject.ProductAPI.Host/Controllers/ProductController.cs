@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
+using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Host.Controllers
 {
@@ -18,10 +19,17 @@ namespace PetProject.ProductAPI.Host.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
             var products = await _productAppService.GetAllAsync();
             return Ok(products);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input)
+        {
+            await _productAppService.InsertOneAsync(input);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }

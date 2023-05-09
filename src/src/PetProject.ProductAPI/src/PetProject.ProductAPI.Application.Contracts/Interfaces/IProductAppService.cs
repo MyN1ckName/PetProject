@@ -5,4 +5,5 @@ namespace PetProject.ProductAPI.Application.Contracts.Interfaces;
 public interface IProductAppService
 {
     Task<List<ProductDto>> GetAllAsync();
+    Task InsertOneAsync(CreateProductDto input);
 }

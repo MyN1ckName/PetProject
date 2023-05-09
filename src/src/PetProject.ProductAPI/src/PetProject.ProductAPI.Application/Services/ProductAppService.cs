@@ -27,4 +27,10 @@ public class ProductAppService : IProductAppService
         var products = await _productRepository.GetAllAsync();
         return _mapper.Map<List<Product>, List<ProductDto>>(products);
     }
+
+    public async Task InsertOneAsync(CreateProductDto input)
+    {
+        var product = new Product(input.Name, input.Category, input.Price);
+        await _productRepository.InsertOneAsync(product);
+    }
 }

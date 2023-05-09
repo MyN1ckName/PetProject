@@ -3,7 +3,15 @@
 namespace PetProject.ProductAPI.Domain.Product.Entity;
 public class Product : EntityBase<Guid>
 {
-    public Name Name{ get; init; }
-    public Category Category { get; init; }
-    public Price Price { get; init; }
+    public Product(string name, string category, double price)
+    {
+        Id = default;
+        Name = new Name(name);
+        Category = new Category(category);
+        Price = new Price(price);
+    }
+
+    public Name Name { get; private set; }
+    public Category Category { get; private set; }
+    public Price Price { get; private set; }
 }
