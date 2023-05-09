@@ -36,8 +36,8 @@ namespace PetProject.ProductAPI.Host.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input)
         {
-            await _productAppService.InsertOneAsync(input);
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _productAppService.InsertOneAsync(input);
+            return StatusCode(StatusCodes.Status201Created, new { Id = id });
         }
 
         [HttpPut]

@@ -34,9 +34,10 @@ public class ProductRepository : IProductRepository<Guid>
         return await _collection.AsQueryable().ToListAsync();
     }
 
-    public async Task InsertOneAsync(Product product)
+    public async Task<Guid> InsertOneAsync(Product product)
     {
         await _collection.InsertOneAsync(product);
+        return product.Id;
     }
 
     public async Task UpdateOneAsync(Product product)

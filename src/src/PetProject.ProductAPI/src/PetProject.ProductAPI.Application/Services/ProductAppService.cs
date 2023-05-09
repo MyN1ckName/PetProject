@@ -34,10 +34,10 @@ public class ProductAppService : IProductAppService
         return _mapper.Map<List<Product>, List<ProductDto>>(products);
     }
 
-    public async Task InsertOneAsync(CreateProductDto input)
+    public async Task<Guid> InsertOneAsync(CreateProductDto input)
     {
         var product = new Product(input.Name, input.Category, input.Price);
-        await _productRepository.InsertOneAsync(product);
+        return await _productRepository.InsertOneAsync(product);
     }
 
     public async Task UpdateOneAsync(ProductDto input)

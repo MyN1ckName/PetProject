@@ -6,7 +6,7 @@ public interface IProductAppService
 {
     Task<ProductDto> GetAsync(Guid id);
     Task<List<ProductDto>> GetAllAsync();
-    Task InsertOneAsync(CreateProductDto input);
+    Task<Guid> InsertOneAsync(CreateProductDto input);
     Task UpdateOneAsync(ProductDto input);
     Task DeleteOneAsync(Guid id);
 }
