@@ -36,6 +36,8 @@ app.UseIdentityServer();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseOneActiveDeviceLock();
+
+// app.MapControllers();
 
 app.Run();
