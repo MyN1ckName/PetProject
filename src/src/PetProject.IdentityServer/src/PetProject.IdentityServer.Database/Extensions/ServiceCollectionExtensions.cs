@@ -53,7 +53,7 @@ public static class ServiceCollectionExtensions
 
         if (_options.IsDevelopment)
         {
-            // identity.AddDeveloperSigningCredential();
+            identity.AddDeveloperSigningCredential();
         }
 
         return services;

@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: src/PetProject.IdentityServer/src/PetProject.IdentityServer.Host/Dockerfile
+
+  productapi:
+    image: ${DOCKER_REGISTRY-}petprojectproductapihost
+    build:
+      context: .
+      dockerfile: src/PetProject.ProductAPI/src/PetProject.ProductAPI.Host/Dockerfile
+

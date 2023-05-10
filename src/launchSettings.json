@@ -4,7 +4,8 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "petproject.identityserver.host": "StartDebugging"
+        "petproject.identityserver.host": "StartDebugging",
+        "petproject.productapi.host": "StartDebugging"
       }
     }
   }
