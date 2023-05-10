@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Host.Controllers
 {
+    [ApiController]
     [Route("/api/[controller]")]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly ILogger _logger;

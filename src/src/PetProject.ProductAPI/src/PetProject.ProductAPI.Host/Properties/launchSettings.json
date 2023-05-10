@@ -4,6 +4,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AUTH_SERVER": "https://localhost:5001",
         "CONNECTION_STRING": "mongodb://localhost:27017",
         "DATABASE_NAME": "ProductApiDatabase"
       },
@@ -14,6 +15,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AUTH_SERVER": "https://localhost:5001",
         "CONNECTION_STRING": "mongodb://localhost:27017",
         "DATABASE_NAME": "ProductApiDatabase"
       },

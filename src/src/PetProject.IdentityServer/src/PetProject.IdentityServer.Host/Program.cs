@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddIdentityDatabase(options =>
 {
     options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-    options.IsDevelopment = true;
+    options.IsDevelopment = builder.Environment.IsDevelopment();
 });
 
 builder.Host.AddSerilog(builder.Configuration);
@@ -28,7 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment() is false)
+    app.UseHttpsRedirection();
 
 app.UseRouting();
 
