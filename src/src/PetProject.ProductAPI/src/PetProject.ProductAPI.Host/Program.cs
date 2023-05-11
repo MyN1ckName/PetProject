@@ -2,12 +2,16 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
+using PetProject.ProductAPI.Host.ExceptionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<OperationCancelledExceptionFilter>();
+});
 
 builder.Services.AddProductApiMongoDb(options =>
 {
