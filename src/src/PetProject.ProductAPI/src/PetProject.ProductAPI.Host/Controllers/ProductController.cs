@@ -23,30 +23,30 @@ namespace PetProject.ProductAPI.Host.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetAsync(Guid id)
+        public async Task<IActionResult> GetAsync(Guid id, CancellationToken cancellationToken)
         {
-            var product = await _productAppService.GetAsync(id);
+            var product = await _productAppService.GetAsync(id, cancellationToken);
             return Ok(product);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var products = await _productAppService.GetAllAsync();
+            var products = await _productAppService.GetAllAsync(cancellationToken);
             return Ok(products);
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input)
+        public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input, CancellationToken cancellationToken)
         {
-            var id = await _productAppService.InsertOneAsync(input);
+            var id = await _productAppService.InsertOneAsync(input, cancellationToken);
             return StatusCode(StatusCodes.Status201Created, new { Id = id });
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateOneAsync([FromBody] ProductDto product)
+        public async Task<IActionResult> UpdateOneAsync([FromBody] ProductDto product, CancellationToken cancellationToken)
         {
-            await _productAppService.UpdateOneAsync(product);
+            await _productAppService.UpdateOneAsync(product, cancellationToken);
             return StatusCode(StatusCodes.Status204NoContent);
         }
 

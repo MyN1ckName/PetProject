@@ -22,25 +22,25 @@ public class ProductAppService : IProductAppService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<ProductDto> GetAsync(Guid id)
+    public async Task<ProductDto> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var product = await _productRepository.GetAsync(id);
         return _mapper.Map<Product, ProductDto>(product);
     }
 
-    public async Task<List<ProductDto>> GetAllAsync()
+    public async Task<List<ProductDto>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         var products = await _productRepository.GetAllAsync();
         return _mapper.Map<List<Product>, List<ProductDto>>(products);
     }
 
-    public async Task<Guid> InsertOneAsync(CreateProductDto input)
+    public async Task<Guid> InsertOneAsync(CreateProductDto input, CancellationToken cancellationToken = default)
     {
         var product = new Product(input.Name, input.Category, input.Price);
         return await _productRepository.InsertOneAsync(product);
     }
 
-    public async Task UpdateOneAsync(ProductDto input)
+    public async Task UpdateOneAsync(ProductDto input, CancellationToken cancellationToken = default)
     {
         var product = await _productRepository.GetAsync(input.Id);
 
@@ -52,7 +52,7 @@ public class ProductAppService : IProductAppService
         await _productRepository.UpdateOneAsync(product);
     }
 
-    public async Task DeleteOneAsync(Guid id)
+    public async Task DeleteOneAsync(Guid id, CancellationToken cancellationToken = default)
     {
         await _productRepository.DeleteOneAsync(id);
     }
