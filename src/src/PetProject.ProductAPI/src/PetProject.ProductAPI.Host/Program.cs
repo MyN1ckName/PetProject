@@ -2,9 +2,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
+using PetProject.ProductAPI.Host.Extensions;
 using PetProject.ProductAPI.Host.ExceptionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.AddSerilog(builder.Configuration);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<OperationCancelledExceptionFilter>();
