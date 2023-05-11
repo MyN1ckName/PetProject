@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using PetProject.ProductAPI.MongoDb.Contexts;
+using PetProject.ProductAPI.Domain.Exceptions;
 using PetProject.ProductAPI.Domain.Product.Entity;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
@@ -19,12 +20,14 @@ public class ProductRepository : IProductRepository<Guid>
             .Filter
             .Eq(x => x.Id, id);
 
-        var product = await _collection.FindAsync(filter, cancellationToken: cancellationToken);
-
-        if (product is not null)
-            return product.First();
-        else
-            throw new ArgumentException(nameof(id));
+        try
+        {
+            return await _collection.Find(filter).FirstAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new EntityNotFoundException("the product not found", ex);
+        }
     }
 
     public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
