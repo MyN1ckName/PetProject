@@ -37,10 +37,10 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("product-scope", policy =>
+    options.AddPolicy("product-api", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "product-scope");
+        policy.RequireClaim("scope", "product-api");
     });
 });
 
@@ -64,6 +64,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers()
+    .RequireAuthorization("product-api");
 
 app.Run();
