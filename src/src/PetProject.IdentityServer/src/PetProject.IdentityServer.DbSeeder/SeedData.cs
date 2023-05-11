@@ -18,7 +18,7 @@ internal static class SeedData
 
     public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope>
     {
-        // new ApiScope(name: "testscope", displayName: "Test API Scope"),
+        new ApiScope(name: "product-api", displayName: "Scope for Product API service"),
     };
 
     public static IEnumerable<Client> Clients => new List<Client>
@@ -34,6 +34,7 @@ internal static class SeedData
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
                 IdentityServerConstants.StandardScopes.Email,
+                "product-api"
             }
         },
     };
