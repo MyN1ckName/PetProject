@@ -17,9 +17,10 @@ builder.Host.AddSerilog(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddControllers();
+// builder.Services.AddControllers();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,10 +36,7 @@ app.UseRouting();
 
 app.UseIdentityServer();
 
-app.UseAuthorization();
-
-app.UseOneActiveDeviceLock();
-
+// app.UseAuthorization();
 // app.MapControllers();
 
 app.Run();

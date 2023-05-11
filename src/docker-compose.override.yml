@@ -59,7 +59,6 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: https://+:443;http://+:80
       AUTH_SERVER: http://identityserver:80
-      VALID_ISSUER: https://localhost:5001
       CONNECTION_STRING: mongodb://host.docker.internal:27017
       DATABASE_NAME: ProductApiDatabase
     ports:

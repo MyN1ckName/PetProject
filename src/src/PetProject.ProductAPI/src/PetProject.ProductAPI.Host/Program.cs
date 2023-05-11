@@ -1,7 +1,7 @@
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
-using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,13 +21,16 @@ builder.Services.AddAuthentication("Bearer")
     {
         options.Authority = Environment.GetEnvironmentVariable("AUTH_SERVER");
 
+        options.AutomaticRefreshInterval = BaseConfigurationManager.MinimumAutomaticRefreshInterval;
+
         if (builder.Environment.IsDevelopment())
         {
             options.RequireHttpsMetadata = false;
+            options.SaveToken = false;
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = false,
-                ValidIssuer = Environment.GetEnvironmentVariable("VALID_ISSUER"),
+                ValidateIssuer = false,
             };
         }
     });
