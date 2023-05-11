@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<OperationCancelledExceptionFilter>();
+    options.Filters.Add<EntityNotFoundExceptionFilter>();
 });
 builder.Services.AddProductApiMongoDb(options =>
 {
