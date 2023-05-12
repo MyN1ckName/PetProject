@@ -2,9 +2,9 @@
 
 public interface IRepository<TEntity, TKey>
 {
-    Task<TEntity> GetAsync(TKey key);
-    Task<List<TEntity>> GetAllAsync();
-    Task<TKey> InsertOneAsync(TEntity entity);
-    Task UpdateOneAsync(TEntity entity);
-    Task DeleteOneAsync(TKey key);
+    Task<TEntity> GetAsync(TKey key, CancellationToken cancellationToken = default);
+    Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToke = default);
+    Task<TKey> InsertOneAsync(TEntity entity, CancellationToken cancellationToken = default);
+    Task UpdateOneAsync(TEntity entity, CancellationToken cancellationToken = default);
+    Task DeleteOneAsync(TKey key, CancellationToken cancellationToken = default);
 }

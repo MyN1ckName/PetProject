@@ -2,19 +2,21 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
+using PetProject.ProductAPI.Host.Extensions;
+using PetProject.ProductAPI.Host.ExceptionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-
+builder.Host.AddSerilog(builder.Configuration);
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<OperationCancelledExceptionFilter>();
+    options.Filters.Add<EntityNotFoundExceptionFilter>();
+});
 builder.Services.AddProductApiMongoDb(options =>
 {
-    options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-    options.DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME");
+    options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING")!;
+    options.DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME")!;
 });
-
 IdentityModelEventSource.ShowPII = true;
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -34,7 +36,6 @@ builder.Services.AddAuthentication("Bearer")
             };
         }
     });
-
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("product-api", policy =>
@@ -43,28 +44,20 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("scope", "product-api");
     });
 });
-
-builder.Services.AddProductApplicatio();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddProductApplication();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
 // Configure the HTTP request pipeline.
+var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers()
     .RequireAuthorization("product-api");
-
 app.Run();

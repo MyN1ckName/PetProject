@@ -1,9 +1,8 @@
 ﻿using MongoDB.Driver;
 using PetProject.ProductAPI.MongoDb.Contexts;
+using PetProject.ProductAPI.Domain.Exceptions;
 using PetProject.ProductAPI.Domain.Product.Entity;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
-using PetProject.ProductAPI.Domain.Product.ValueObject;
-using MongoDB.Bson;
 
 namespace PetProject.ProductAPI.MongoDb.Repositories;
 public class ProductRepository : IProductRepository<Guid>
@@ -15,32 +14,34 @@ public class ProductRepository : IProductRepository<Guid>
         _collection = context.Collection();
     }
 
-    public async Task<Product> GetAsync(Guid id)
+    public async Task<Product> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var filter = Builders<Product>
             .Filter
             .Eq(x => x.Id, id);
 
-        var product = await _collection.FindAsync(filter);
-
-        if (product is not null)
-            return product.First();
-        else
-            throw new ArgumentException(nameof(id));
+        try
+        {
+            return await _collection.Find(filter).FirstAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new EntityNotFoundException("the product not found", ex);
+        }
     }
 
-    public async Task<List<Product>> GetAllAsync()
+    public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return await _collection.AsQueryable().ToListAsync();
+        return await _collection.AsQueryable().ToListAsync(cancellationToken);
     }
 
-    public async Task<Guid> InsertOneAsync(Product product)
+    public async Task<Guid> InsertOneAsync(Product product, CancellationToken cancellationToken = default)
     {
-        await _collection.InsertOneAsync(product);
+        await _collection.InsertOneAsync(product, cancellationToken: cancellationToken);
         return product.Id;
     }
 
-    public async Task UpdateOneAsync(Product product)
+    public async Task UpdateOneAsync(Product product, CancellationToken cancellationToken = default)
     {
         var filter = Builders<Product>.Filter.Where(x => x.Id == product.Id);
         var update = Builders<Product>
@@ -49,12 +50,12 @@ public class ProductRepository : IProductRepository<Guid>
             .Set(x => x.Category, product.Category)
             .Set(x => x.Price, product.Price);
 
-        await _collection.UpdateOneAsync(filter, update);
+        await _collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
     }
 
-    public async Task DeleteOneAsync(Guid id)
+    public async Task DeleteOneAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var filter = Builders<Product>.Filter.Where(x => x.Id == id);
-        await _collection.DeleteOneAsync(filter);
+        await _collection.DeleteOneAsync(filter, cancellationToken: cancellationToken);
     }
 }

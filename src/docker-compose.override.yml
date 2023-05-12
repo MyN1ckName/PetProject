@@ -61,6 +61,7 @@ services:
       AUTH_SERVER: http://identityserver:80
       CONNECTION_STRING: mongodb://host.docker.internal:27017
       DATABASE_NAME: ProductApiDatabase
+      SEQ_SERVER_URL: http://seq:80
     ports:
       - '5002:80'
       - '5003:443'

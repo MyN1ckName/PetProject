@@ -4,9 +4,9 @@ namespace PetProject.ProductAPI.Application.Contracts.Interfaces;
 
 public interface IProductAppService
 {
-    Task<ProductDto> GetAsync(Guid id);
-    Task<List<ProductDto>> GetAllAsync();
-    Task<Guid> InsertOneAsync(CreateProductDto input);
-    Task UpdateOneAsync(ProductDto input);
-    Task DeleteOneAsync(Guid id);
+    Task<ProductDto> GetAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<List<ProductDto>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Guid> InsertOneAsync(CreateProductDto input, CancellationToken cancellationToken = default);
+    Task UpdateOneAsync(ProductDto input, CancellationToken cancellationToken = default);
+    Task DeleteOneAsync(Guid id, CancellationToken cancellationToken = default);
 }
