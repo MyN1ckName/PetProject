@@ -29,6 +29,7 @@ internal static class SeedData
             ClientId="ExternalClient",
             ClientSecrets= { new Secret("secret".Sha256())},
             AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+            AllowOfflineAccess = true,
             AllowedScopes=new List<string>
             {
                 IdentityServerConstants.StandardScopes.OpenId,
