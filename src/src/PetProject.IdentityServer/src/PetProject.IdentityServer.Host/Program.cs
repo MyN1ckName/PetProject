@@ -1,11 +1,16 @@
 using PetProject.IdentityServer.Host.Extensions;
 using PetProject.IdentityServer.Database.Extensions;
 using Serilog;
-using Duende.IdentityServer.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.All;
+});
 
 builder.Services.AddIdentityDatabase(options =>
 {
@@ -22,6 +27,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -34,9 +41,9 @@ if (app.Environment.IsDevelopment() is false)
 
 app.UseRouting();
 
-app.UseIdentityServer();
+//app.UseIdentityServer();
 
-// app.UseAuthorization();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

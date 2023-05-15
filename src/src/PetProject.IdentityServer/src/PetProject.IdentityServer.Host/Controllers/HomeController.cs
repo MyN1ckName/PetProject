@@ -4,6 +4,8 @@ using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Stores;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Stores.Serialization;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Http;
 
 namespace PetProject.IdentityServer.Host.Controllers;
 
@@ -56,6 +58,13 @@ public class HomeController : ControllerBase
         {
             var refresh = refreshes.First();
         }
+
+        var clientIPAddr = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+        var feature = HttpContext.Features.Get<IHttpConnectionFeature>();
+        var localIPAddr = feature?.LocalIpAddress?.ToString();
+
+        var host = HttpContext.Request.Host;
 
         return Ok();
     }
