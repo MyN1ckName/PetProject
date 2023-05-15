@@ -2,6 +2,8 @@
 
 public class CategoryTests
 {
+    private const int MAX_CATEGORY_LENGHT = 50;
+
     [InlineData(null)]
     [InlineData("")]
     [Theory]
@@ -14,7 +16,7 @@ public class CategoryTests
     [Fact]
     public void Category_name_max_lenght_is_valid()
     {
-        var name = new string('c', Category.MAX_CATEGORY_LENGHT);
+        var name = new string('c', MAX_CATEGORY_LENGHT);
         var sut = new Category(name);
         sut.Value.Should().Be(name);
     }
@@ -22,7 +24,7 @@ public class CategoryTests
     [Fact]
     public void Category_name_is_more_max_lenght_is_invalid()
     {
-        var name = new string('c', Category.MAX_CATEGORY_LENGHT + 1);
+        var name = new string('c', MAX_CATEGORY_LENGHT + 1);
         Action action = () => new Category(name);
         action.Should().Throw<ArgumentException>();
     }
