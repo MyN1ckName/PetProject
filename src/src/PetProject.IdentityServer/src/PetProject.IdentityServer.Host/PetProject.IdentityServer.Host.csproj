@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PetProject.IdentityServer.Database\PetProject.IdentityServer.Database.csproj" />
     <ProjectReference Include="..\PetProject.IdentityServer.Domain\PetProject.IdentityServer.Domain.csproj" />
   </ItemGroup>

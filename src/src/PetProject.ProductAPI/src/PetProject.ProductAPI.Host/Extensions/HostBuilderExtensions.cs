@@ -11,7 +11,7 @@ internal static class HostBuilderExtensions
         var seqServerUrl = Environment.GetEnvironmentVariable("SEQ_SERVER_URL");
 
         if (seqServerUrl is not null)
-            loggerConfiguration.WriteTo.Seq(seqServerUrl);
+            // loggerConfiguration.WriteTo.Seq(seqServerUrl);
 
         host.UseSerilog(loggerConfiguration.CreateLogger());
 
