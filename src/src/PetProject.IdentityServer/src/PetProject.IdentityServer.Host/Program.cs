@@ -2,6 +2,7 @@ using PetProject.IdentityServer.Host.Extensions;
 using PetProject.IdentityServer.Database.Extensions;
 using Serilog;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
-    options.ForwardedHeaders = ForwardedHeaders.All;
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.RequireHeaderSymmetry = false;
+    options.ForwardLimit = null;
+    options.KnownProxies.Add(IPAddress.Parse("::ffff:172.18.0.1"));
 });
 
 builder.Services.AddIdentityDatabase(options =>
