@@ -1,4 +1,4 @@
-﻿namespace PetProject.ProductAPI.Domain.Tests;
+﻿namespace PetProject.ProductAPI.Domain.Tests.Unit;
 
 public class NameTests
 {
