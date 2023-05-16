@@ -47,8 +47,8 @@ public class ProductControllerTests
 
         var result = sut.Should().BeOfType<ObjectResult>().Subject;
         result.StatusCode.Should().Be(201);
-        var entity = result.Value.Should().BeOfType<EntityDto<Guid>>().Subject;
-        entity.Id.Should().NotBe(default(Guid));
+        var value = result.Value.Should().BeOfType<EntityDto<Guid>>().Subject;
+        value.Id.Should().NotBe(default(Guid));
     }
 
     private ILogger<T> CreateTestLogger<T>() => new LoggerFactory().CreateLogger<T>();
