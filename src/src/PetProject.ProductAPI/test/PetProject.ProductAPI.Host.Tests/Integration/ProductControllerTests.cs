@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using AutoMapper;
-using PetProject.ProductAPI.Host.Controllers;
+﻿using PetProject.ProductAPI.Host.Controllers;
 using PetProject.ProductAPI.MongoDb.Contexts;
 using PetProject.ProductAPI.MongoDb.Repositories;
 using PetProject.ProductAPI.Application;
@@ -47,15 +44,14 @@ public class ProductControllerTests
         var token = new CancellationTokenSource().Token;
 
         var sut = await _controller.InsertOneAsync(product, token);
+
         var result = sut.Should().BeOfType<ObjectResult>().Subject;
+        result.StatusCode.Should().Be(201);
         var entity = result.Value.Should().BeOfType<EntityDto<Guid>>().Subject;
         entity.Id.Should().NotBe(default(Guid));
     }
 
     private ILogger<T> CreateTestLogger<T>() => new LoggerFactory().CreateLogger<T>();
-    private IMapper CreateTestMapper()
-    {
-        var config = new MapperConfiguration(cfg => cfg.AddProfile<AutomapperProfile>());
-        return config.CreateMapper();
-    }
+    private IMapper CreateTestMapper() =>
+        new MapperConfiguration(cfg => cfg.AddProfile<AutomapperProfile>()).CreateMapper();
 }
