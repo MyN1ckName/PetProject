@@ -1,7 +1,7 @@
 ﻿using PetProject.ProductAPI.Domain.Product.ValueObject;
 
 namespace PetProject.ProductAPI.Domain.Product.Entity;
-public class Product : EntityBase<Guid>
+public class Product : Entity<Guid>
 {
     public Product(string name, string category, double price)
     {

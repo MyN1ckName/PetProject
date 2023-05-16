@@ -4,7 +4,7 @@ using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Application;
 
-internal class AutomapperProfile : Profile
+public class AutomapperProfile : Profile
 {
     public AutomapperProfile()
     {
