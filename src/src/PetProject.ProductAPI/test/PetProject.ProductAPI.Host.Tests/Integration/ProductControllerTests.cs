@@ -8,9 +8,10 @@ using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Host.Tests.Integration;
 
-public class ProductControllerTests
+public class ProductControllerTests : IntegrationTest
 {
     private readonly ProductController _controller;
+    private readonly ProductApiDbContext _dbContext;
 
     public ProductControllerTests()
     {
@@ -19,13 +20,13 @@ public class ProductControllerTests
             ConnectionString = "mongodb://localhost:27017",
             DatabaseName = "ProductApiDatabase-TEST"
         };
-        var dbContext = new ProductApiDbContext(dbContextOptions);
-        var productRepository = new ProductRepository(dbContext);
+        _dbContext = new ProductApiDbContext(dbContextOptions);
+        var productRepository = new ProductRepository(_dbContext);
 
         var productAppService = new ProductAppService(
             CreateTestLogger<ProductAppService>(),
             productRepository,
-            CreateTestMapper());
+            CreateTestMapper<AutomapperProfile>());
 
         _controller = new ProductController(
             CreateTestLogger<ProductController>(),
@@ -33,8 +34,10 @@ public class ProductControllerTests
     }
 
     [Fact]
-    public async void Insert_product()
+    public async void Insert_product_should_has_non_default_id()
     {
+        await ClearDatabaseAsync();
+
         var product = new CreateProductDto
         {
             Name = "product test name",
@@ -51,7 +54,6 @@ public class ProductControllerTests
         value.Id.Should().NotBe(default(Guid));
     }
 
-    private ILogger<T> CreateTestLogger<T>() => new LoggerFactory().CreateLogger<T>();
-    private IMapper CreateTestMapper() =>
-        new MapperConfiguration(cfg => cfg.AddProfile<AutomapperProfile>()).CreateMapper();
+    private async Task ClearDatabaseAsync() =>
+        await _dbContext.Product.Database.DropCollectionAsync(nameof(_dbContext.Product));
 }
