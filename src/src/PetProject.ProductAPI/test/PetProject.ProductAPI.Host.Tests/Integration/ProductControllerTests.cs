@@ -34,7 +34,7 @@ public class ProductControllerTests : IntegrationTest
     }
 
     [Fact]
-    public async Task Insert_product_should_has_non_default_id()
+    public async Task Insert_product_should_return_201_and_non_default_id()
     {
         await ClearDatabaseAsync();
 
