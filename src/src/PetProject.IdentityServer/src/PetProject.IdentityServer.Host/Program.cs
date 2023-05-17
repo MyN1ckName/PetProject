@@ -3,19 +3,12 @@ using PetProject.IdentityServer.Database.Extensions;
 using Serilog;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Net;
+using Duende.IdentityServer.Services;
+using PetProject.IdentityServer.Host.ProfileServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-    options.RequireHeaderSymmetry = false;
-    options.ForwardLimit = null;
-    options.KnownProxies.Add(IPAddress.Parse("::ffff:172.18.0.1"));
-});
-
 builder.Services.AddIdentityDatabase(options =>
 {
     options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
@@ -28,6 +21,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IProfileService, MachineIdProfileService>();
 
 var app = builder.Build();
 
@@ -45,7 +40,7 @@ if (app.Environment.IsDevelopment() is false)
 
 app.UseRouting();
 
-//app.UseIdentityServer();
+app.UseIdentityServer();
 
 app.UseAuthorization();
 app.MapControllers();
