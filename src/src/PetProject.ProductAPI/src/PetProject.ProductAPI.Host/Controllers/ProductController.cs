@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
+using PetProject.ProductAPI.Domain;
+using PetProject.ProductAPI.Application.Contracts.Dto;
 
 namespace PetProject.ProductAPI.Host.Controllers
 {
@@ -40,7 +42,7 @@ namespace PetProject.ProductAPI.Host.Controllers
         public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input, CancellationToken cancellationToken)
         {
             var id = await _productAppService.InsertOneAsync(input, cancellationToken);
-            return StatusCode(StatusCodes.Status201Created, new { Id = id });
+            return StatusCode(StatusCodes.Status201Created, new EntityDto<Guid> { Id = id});
         }
 
         [HttpPut]
