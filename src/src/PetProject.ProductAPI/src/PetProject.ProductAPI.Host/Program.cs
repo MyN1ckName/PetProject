@@ -4,6 +4,7 @@ using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
 using PetProject.ProductAPI.Host.Extensions;
 using PetProject.ProductAPI.Host.ExceptionFilters;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddSerilog(builder.Configuration);
