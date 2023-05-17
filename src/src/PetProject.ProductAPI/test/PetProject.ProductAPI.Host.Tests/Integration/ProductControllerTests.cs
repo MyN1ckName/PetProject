@@ -36,6 +36,7 @@ public class ProductControllerTests : IntegrationTest
     [Fact]
     public async Task Insert_product_should_return_201_and_non_default_id()
     {
+        // Arrange
         await ClearDatabaseAsync();
 
         var product = new CreateProductDto
@@ -46,8 +47,10 @@ public class ProductControllerTests : IntegrationTest
         };
         var token = new CancellationTokenSource().Token;
 
+        // Act
         var sut = await _controller.InsertOneAsync(product, token);
 
+        // Assert
         var result = sut.Should().BeOfType<ObjectResult>().Subject;
         result.StatusCode.Should().Be(201);
         var value = result.Value.Should().BeOfType<EntityDto<Guid>>().Subject;
@@ -57,6 +60,7 @@ public class ProductControllerTests : IntegrationTest
     [Fact]
     public async Task Update_product_should_return_204_and_update_properties()
     {
+        // Arrange
         await ClearDatabaseAsync();
 
         var insertProduct = new CreateProductDto
@@ -76,7 +80,14 @@ public class ProductControllerTests : IntegrationTest
             Price = 999.99f
         };
 
+        productUpdate.Name.Should().NotBe(insertProduct.Name);
+        productUpdate.Category.Should().NotBe(insertProduct.Category);
+        Math.Round(productUpdate.Price, 2).Should().NotBe(Math.Round(insertProduct.Price, 2));
+
+        //Act
         var sut = await _controller.UpdateOneAsync(productUpdate, token);
+
+        // Assert
         var result = sut.Should().BeOfType<StatusCodeResult>().Subject;
         result.StatusCode.Should().Be(204);
 
