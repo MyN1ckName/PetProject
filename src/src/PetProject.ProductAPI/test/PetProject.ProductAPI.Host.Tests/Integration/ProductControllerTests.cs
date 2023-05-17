@@ -98,6 +98,32 @@ public class ProductControllerTests : IntegrationTest
         Math.Round(product!.Price, 2).Should().Be(Math.Round(productUpdate.Price, 2));
     }
 
+    [Fact]
+    public async Task Delete_product_should_return_204_and_delete()
+    {
+        // Arrange
+        await ClearDatabaseAsync();
+
+        var insertProduct = new CreateProductDto
+        {
+            Name = "product test name",
+            Category = "test category",
+            Price = 99.99f,
+        };
+        var token = new CancellationTokenSource().Token;
+        var id = (((await _controller.InsertOneAsync(insertProduct, token)) as ObjectResult)!.Value as EntityDto<Guid>)!.Id;
+
+        //Act
+        var sut = await _controller.DeleteOneAsync(id);
+
+        //Assert
+        var result = sut.Should().BeOfType<StatusCodeResult>().Subject;
+        result.StatusCode.Should().Be(204);
+
+        Func<Task<IActionResult>> act = async () => { return await _controller.GetAsync(id, token); };
+        await act.Should().ThrowAsync<Exception>();
+    }
+
     private async Task ClearDatabaseAsync() =>
         await _dbContext.Product.Database.DropCollectionAsync(nameof(_dbContext.Product));
 }
