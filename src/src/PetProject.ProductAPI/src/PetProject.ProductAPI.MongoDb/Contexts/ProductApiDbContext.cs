@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
-using PetProject.ProductAPI.Domain.Product.Entity;
-using PetProject.ProductAPI.Domain.Manufacturer.Entity;
+using PetProject.ProductAPI.Domain.Product.Entitys;
+using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
 
 namespace PetProject.ProductAPI.MongoDb.Contexts
 {

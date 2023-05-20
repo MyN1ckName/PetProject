@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PetProject.ProductAPI.Domain.Product.Entity;
+using PetProject.ProductAPI.Domain.Product.Entitys;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Application;

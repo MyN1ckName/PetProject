@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using PetProject.ProductAPI.Domain.Product.Entity;
+using PetProject.ProductAPI.Domain.Product.Entitys;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
@@ -10,11 +10,11 @@ namespace PetProject.ProductAPI.Application.Services;
 public class ProductAppService : IProductAppService
 {
     private readonly ILogger _logger;
-    private readonly IProductRepository<Guid> _productRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     public ProductAppService(
         ILogger<ProductAppService> logger,
-        IProductRepository<Guid> productRepository,
+        IProductRepository productRepository,
         IMapper mapper)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
