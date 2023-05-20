@@ -1,10 +1,6 @@
+using Serilog;
 using PetProject.IdentityServer.Host.Extensions;
 using PetProject.IdentityServer.Database.Extensions;
-using Serilog;
-using Microsoft.AspNetCore.HttpOverrides;
-using System.Net;
-using Duende.IdentityServer.Services;
-using PetProject.IdentityServer.Host.ProfileServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +17,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
-
-builder.Services.AddScoped<IProfileService, MachineIdProfileService>();
 
 var app = builder.Build();
 
@@ -43,6 +37,6 @@ app.UseRouting();
 app.UseIdentityServer();
 
 app.UseAuthorization();
-app.MapControllers();
+//app.MapControllers();
 
 app.Run();
