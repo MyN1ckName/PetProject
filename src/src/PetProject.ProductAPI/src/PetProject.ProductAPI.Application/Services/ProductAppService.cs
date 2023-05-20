@@ -40,7 +40,7 @@ public class ProductAppService : IProductAppService
         return await _productRepository.InsertOneAsync(product);
     }
 
-    public async Task UpdateOneAsync(ProductDto input, CancellationToken cancellationToken = default)
+    public async Task ReplaceOneAsync(ProductDto input, CancellationToken cancellationToken = default)
     {
         var product = await _productRepository.GetAsync(input.Id);
 
@@ -49,7 +49,7 @@ public class ProductAppService : IProductAppService
             .SetCategory(input.Category)
             .SetPrice(input.Price);
 
-        await _productRepository.UpdateOneAsync(product);
+        await _productRepository.ReplaceOneAsync(product);
     }
 
     public async Task DeleteOneAsync(Guid id, CancellationToken cancellationToken = default)

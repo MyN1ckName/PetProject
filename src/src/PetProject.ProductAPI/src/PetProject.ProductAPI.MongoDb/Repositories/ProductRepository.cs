@@ -13,16 +13,4 @@ public class ProductRepository : RepositoryBase<Product, Guid>,  IProductReposit
     {
         _collection = context.Collection<Product>();
     }
-
-    // public override async Task UpdateOneAsync(Product product, CancellationToken cancellationToken = default)
-    // {
-    //     var filter = Builders<Product>.Filter.Where(x => x.Id == product.Id);
-    //     var update = Builders<Product>
-    //         .Update
-    //         .Set(x => x.Name, product.Name)
-    //         .Set(x => x.Category, product.Category)
-    //         .Set(x => x.Price, product.Price);
-    // 
-    //     await _collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
-    // }
 }

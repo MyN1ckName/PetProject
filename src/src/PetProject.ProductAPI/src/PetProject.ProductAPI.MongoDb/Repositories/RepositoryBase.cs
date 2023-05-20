@@ -14,12 +14,12 @@ public class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey> where TE
         _collection = context.Collection<TEntity>();
     }
 
-    public async Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
+    public virtual async Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         return await _collection.AsQueryable().ToListAsync(cancellationToken);
     }
 
-    public async Task<TEntity> GetAsync(TKey key, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity> GetAsync(TKey key, CancellationToken cancellationToken = default)
     {
         var filter = Builders<TEntity>
             .Filter
@@ -35,18 +35,18 @@ public class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey> where TE
         }
     }
 
-    public async Task<TKey> InsertOneAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public virtual async Task<TKey> InsertOneAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _collection.InsertOneAsync(entity, cancellationToken: cancellationToken);
         return entity.Id;
     }
 
-    public virtual Task UpdateOneAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public virtual async Task ReplaceOneAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _collection.ReplaceOneAsync(x => x.Id.Equals(entity.Id), entity, cancellationToken: cancellationToken);
     }
 
-    public async Task DeleteOneAsync(TKey key, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteOneAsync(TKey key, CancellationToken cancellationToken = default)
     {
         var filter = Builders<TEntity>.Filter.Eq(x => x.Id, key);
         await _collection.DeleteOneAsync(filter, cancellationToken: cancellationToken);
