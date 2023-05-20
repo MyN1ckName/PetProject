@@ -58,7 +58,7 @@ public class ProductControllerTests : IntegrationTest
     }
 
     [Fact]
-    public async Task Update_product_should_return_204_and_update_properties()
+    public async Task Replace_product_should_return_204_and_update_all_properties()
     {
         // Arrange
         await ClearDatabaseAsync();
@@ -85,7 +85,7 @@ public class ProductControllerTests : IntegrationTest
         Math.Round(productUpdate.Price, 2).Should().NotBe(Math.Round(insertProduct.Price, 2));
 
         //Act
-        var sut = await _controller.UpdateOneAsync(productUpdate, token);
+        var sut = await _controller.ReplaceOneAsync(productUpdate, token);
 
         // Assert
         var result = sut.Should().BeOfType<StatusCodeResult>().Subject;

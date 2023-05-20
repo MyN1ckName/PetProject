@@ -1,6 +1,6 @@
-﻿using PetProject.ProductAPI.Domain.Product.ValueObject;
+﻿using PetProject.ProductAPI.Domain.Product.ValueObjects;
 
-namespace PetProject.ProductAPI.Domain.Product.Entity;
+namespace PetProject.ProductAPI.Domain.Product.Entitys;
 public class Product : Entity<Guid>
 {
     public Product(string name, string category, double price)

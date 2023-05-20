@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using PetProject.ProductAPI.Application.Contracts.Dto;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
-using PetProject.ProductAPI.Domain;
-using PetProject.ProductAPI.Application.Contracts.Dto;
 
 namespace PetProject.ProductAPI.Host.Controllers
 {
@@ -24,6 +23,13 @@ namespace PetProject.ProductAPI.Host.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var products = await _productAppService.GetAllAsync(cancellationToken);
+            return Ok(products);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetAsync(Guid id, CancellationToken cancellationToken)
         {
@@ -31,24 +37,17 @@ namespace PetProject.ProductAPI.Host.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
-        {
-            var products = await _productAppService.GetAllAsync(cancellationToken);
-            return Ok(products);
-        }
-
         [HttpPost]
         public async Task<IActionResult> InsertOneAsync([FromBody] CreateProductDto input, CancellationToken cancellationToken)
         {
             var id = await _productAppService.InsertOneAsync(input, cancellationToken);
-            return StatusCode(StatusCodes.Status201Created, new EntityDto<Guid> { Id = id});
+            return StatusCode(StatusCodes.Status201Created, new EntityDto<Guid> { Id = id });
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateOneAsync([FromBody] ProductDto product, CancellationToken cancellationToken)
+        public async Task<IActionResult> ReplaceOneAsync([FromBody] ProductDto product, CancellationToken cancellationToken)
         {
-            await _productAppService.UpdateOneAsync(product, cancellationToken);
+            await _productAppService.ReplaceOneAsync(product, cancellationToken);
             return StatusCode(StatusCodes.Status204NoContent);
         }
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using PetProject.ProductAPI.Domain.Product.Entity;
+using PetProject.ProductAPI.Domain.Product.Entitys;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
@@ -10,11 +10,11 @@ namespace PetProject.ProductAPI.Application.Services;
 public class ProductAppService : IProductAppService
 {
     private readonly ILogger _logger;
-    private readonly IProductRepository<Guid> _productRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     public ProductAppService(
         ILogger<ProductAppService> logger,
-        IProductRepository<Guid> productRepository,
+        IProductRepository productRepository,
         IMapper mapper)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -40,7 +40,7 @@ public class ProductAppService : IProductAppService
         return await _productRepository.InsertOneAsync(product);
     }
 
-    public async Task UpdateOneAsync(ProductDto input, CancellationToken cancellationToken = default)
+    public async Task ReplaceOneAsync(ProductDto input, CancellationToken cancellationToken = default)
     {
         var product = await _productRepository.GetAsync(input.Id);
 
@@ -49,7 +49,7 @@ public class ProductAppService : IProductAppService
             .SetCategory(input.Category)
             .SetPrice(input.Price);
 
-        await _productRepository.UpdateOneAsync(product);
+        await _productRepository.ReplaceOneAsync(product);
     }
 
     public async Task DeleteOneAsync(Guid id, CancellationToken cancellationToken = default)
