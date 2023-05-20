@@ -9,9 +9,12 @@ public class ProductRepository : IProductRepository<Guid>
 {
     private readonly IMongoCollection<Product> _collection;
 
-    public ProductRepository(IDbContext<Product> context)
+    public ProductRepository(IDbContext context)
     {
-        _collection = context.Collection();
+        _collection = context.Collection<Product>();
+
+
+        int y = 9;
     }
 
     public async Task<Product> GetAsync(Guid id, CancellationToken cancellationToken = default)

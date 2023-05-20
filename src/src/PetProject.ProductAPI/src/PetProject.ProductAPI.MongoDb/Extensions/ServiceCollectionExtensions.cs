@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PetProject.ProductAPI.Domain.Product.Entity;
-using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 using PetProject.ProductAPI.MongoDb.Contexts;
 using PetProject.ProductAPI.MongoDb.Repositories;
+using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
 namespace PetProject.ProductAPI.MongoDb.Extensions;
 
@@ -16,7 +15,7 @@ public static class ServiceCollectionExtensions
         optionsAction?.Invoke(_options);
 
         services.AddSingleton(_options);
-        services.AddTransient<IDbContext<Product>, ProductApiDbContext>();
+        services.AddTransient<IDbContext, ProductApiDbContext>();
         services.AddTransient<IProductRepository<Guid>, ProductRepository>();
 
         return services;
