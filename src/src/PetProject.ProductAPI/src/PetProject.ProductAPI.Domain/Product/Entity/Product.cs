@@ -1,4 +1,4 @@
-﻿using PetProject.ProductAPI.Domain.Product.ValueObject;
+﻿using PetProject.ProductAPI.Domain.Product.ValueObjects;
 
 namespace PetProject.ProductAPI.Domain.Product.Entity;
 public class Product : Entity<Guid>
