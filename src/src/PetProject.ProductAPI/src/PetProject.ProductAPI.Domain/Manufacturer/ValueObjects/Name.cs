@@ -2,7 +2,12 @@
 
 public class Name : ValueObject
 {
-    public string Value { get; init; }
+    public Name(string name)
+    {
+        Value = name;
+    }
+
+    public string Value { get; private set; }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
