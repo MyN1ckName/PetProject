@@ -6,6 +6,9 @@ public class Manufacturer : Entity<Guid>
 {
     private Manufacturer() { }
 
+    public Name Name { get; private set; }
+    public City City { get; private set; }
+
     public static Manufacturer Create(string name, string city)
     {
         return new Manufacturer
@@ -15,6 +18,15 @@ public class Manufacturer : Entity<Guid>
         };
     }
 
-    public Name Name { get; init; }
-    public City City { get; init; }
+    public Manufacturer ChangeName(string name)
+    {
+        Name = new Name(name);
+        return this;
+    }
+
+    public Manufacturer ChangeCity(string city)
+    {
+        City = new City(city);
+        return this;
+    }
 }
