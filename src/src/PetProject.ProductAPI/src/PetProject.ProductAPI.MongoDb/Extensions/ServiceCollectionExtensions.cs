@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(_options);
         services.AddTransient<IDbContext, ProductApiDbContext>();
         services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddTransient<IManufacturerRepository, ManufacturerRepository>();
 
         return services;
     }
