@@ -11,11 +11,13 @@ public class Manufacturer : Entity<Guid>
 
     public static Manufacturer Create(string name, string url)
     {
-        return new Manufacturer
+        var manufacturer = new Manufacturer
         {
             Name = new Name(name),
-            Website = url,
         };
+
+        manufacturer.ChangeWebsite(url);
+        return manufacturer;
     }
 
     public Manufacturer ChangeName(string name)
@@ -26,7 +28,16 @@ public class Manufacturer : Entity<Guid>
 
     public Manufacturer ChangeWebsite(string url)
     {
-        Website = url;
+        Uri uriResult;
+
+        bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+            && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+        if (result)
+            Website = url;
+        else
+            throw new ArgumentException(nameof(url));
+
         return this;
     }
 }
