@@ -7,7 +7,7 @@ using PetProject.ProductAPI.Application.Contracts.Dto.Manufacturer;
 namespace PetProject.ProductAPI.Host.Controllers;
 
 [ApiController]
-// [Authorize(Policy = "manufacturer-api")]
+[Authorize(Policy = "manufacturer-api")]
 [Route("api/[controller]")]
 public class ManufacturerController : ControllerBase
 {
