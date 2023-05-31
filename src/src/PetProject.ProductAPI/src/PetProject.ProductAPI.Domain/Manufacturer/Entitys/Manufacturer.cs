@@ -7,14 +7,14 @@ public class Manufacturer : Entity<Guid>
     private Manufacturer() { }
 
     public Name Name { get; private set; }
-    public City City { get; private set; }
+    public string Website { get; private set; }
 
-    public static Manufacturer Create(string name, string city)
+    public static Manufacturer Create(string name, string url)
     {
         return new Manufacturer
         {
             Name = new Name(name),
-            City = new City(city),
+            Website = url,
         };
     }
 
@@ -24,9 +24,9 @@ public class Manufacturer : Entity<Guid>
         return this;
     }
 
-    public Manufacturer ChangeCity(string city)
+    public Manufacturer ChangeWebsite(string url)
     {
-        City = new City(city);
+        Website = url;
         return this;
     }
 }

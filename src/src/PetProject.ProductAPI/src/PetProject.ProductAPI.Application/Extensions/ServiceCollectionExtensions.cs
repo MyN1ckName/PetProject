@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
         var mapper = config.CreateMapper();
         services.AddSingleton<IMapper>(mapper);
         services.AddScoped<IProductAppService, ProductAppService>();
+        services.AddScoped<IManufacturerService, ManufacturerService>();
 
         return services;
     }
