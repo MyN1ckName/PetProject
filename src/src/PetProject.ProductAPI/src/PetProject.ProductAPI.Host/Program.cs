@@ -44,6 +44,11 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", "product-api");
     });
+    options.AddPolicy("manufacturer-api", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "manufacturer-api");
+    });
 });
 builder.Services.AddProductApplication();
 builder.Services.AddEndpointsApiExplorer();
@@ -59,6 +64,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers()
-    .RequireAuthorization("product-api");
+app.MapControllers();
 app.Run();

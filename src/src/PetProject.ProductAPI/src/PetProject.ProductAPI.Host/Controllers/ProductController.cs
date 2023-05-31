@@ -8,7 +8,7 @@ namespace PetProject.ProductAPI.Host.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    [Authorize]
+    [Authorize(Policy = "product-api")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger _logger;
