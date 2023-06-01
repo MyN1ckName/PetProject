@@ -1,5 +1,7 @@
-﻿namespace PetProject.ProductAPI.Domain.Interfaces.Repositories;
+﻿using PetProject.ProductAPI.Domain.Products.Entitys;
 
-public interface IProductRepository : IRepository<Product.Entitys.Product, Guid>
+namespace PetProject.ProductAPI.Domain.Interfaces.Repositories;
+
+public interface IProductRepository : IRepository<Product, Guid>
 {
 }

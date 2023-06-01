@@ -1,4 +1,4 @@
-﻿namespace PetProject.ProductAPI.Domain.Product.ValueObjects;
+﻿namespace PetProject.ProductAPI.Domain.Products.ValueObjects;
 
 public class Name
 {
