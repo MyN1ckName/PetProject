@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using PetProject.ProductAPI.Domain.Products;
 using PetProject.ProductAPI.Application.Services;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 
@@ -13,6 +14,7 @@ public static class ServiceCollectionExtensions
         var config = new MapperConfiguration(cfg => cfg.AddProfile<AutomapperProfile>());
         var mapper = config.CreateMapper();
         services.AddSingleton<IMapper>(mapper);
+        services.AddScoped<ProductManager>();
         services.AddScoped<IProductAppService, ProductAppService>();
         services.AddScoped<IManufacturerService, ManufacturerService>();
 

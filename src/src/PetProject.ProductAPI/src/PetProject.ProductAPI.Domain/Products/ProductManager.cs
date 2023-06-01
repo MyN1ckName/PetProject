@@ -23,6 +23,6 @@ public class ProductManager
             Price = new Price(price),
             ManufacturerId = manufacturer.Id,
         };
-        return product;            
+        return product;
     }
 }
