@@ -53,6 +53,9 @@ public class ProductAppService : IProductAppService
             .SetCategory(input.Category)
             .SetPrice(input.Price);
 
+        if (product.ManufacturerId != input.ManufacturerId)
+          await _productManager.ChangeManufacturerId(product, input.ManufacturerId);
+
         await _productRepository.ReplaceOneAsync(product);
     }
 

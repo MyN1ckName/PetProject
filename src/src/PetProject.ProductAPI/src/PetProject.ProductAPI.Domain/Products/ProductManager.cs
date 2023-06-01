@@ -25,4 +25,15 @@ public class ProductManager
         };
         return product;
     }
+
+    public async Task<Product> ChangeManufacturerId(Product product, Guid manufacturerId)
+    {
+        if (product.ManufacturerId == manufacturerId)
+            return product;
+
+        var manufacturer = await _manufacturerRepository.GetAsync(manufacturerId);
+
+        product.ManufacturerId = manufacturer.Id;
+        return product;
+    }
 }
