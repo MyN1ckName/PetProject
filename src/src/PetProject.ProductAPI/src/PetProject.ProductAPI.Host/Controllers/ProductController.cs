@@ -22,6 +22,11 @@ namespace PetProject.ProductAPI.Host.Controllers
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
         }
 
+        /// <summary>
+        /// Get All Products 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {

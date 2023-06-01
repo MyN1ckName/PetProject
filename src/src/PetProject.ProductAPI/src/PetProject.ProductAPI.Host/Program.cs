@@ -4,7 +4,7 @@ using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
 using PetProject.ProductAPI.Host.Extensions;
 using PetProject.ProductAPI.Host.ExceptionFilters;
-using Microsoft.AspNetCore.HttpOverrides;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddSerilog(builder.Configuration);
@@ -51,15 +51,23 @@ builder.Services.AddAuthorization(options =>
     });
 });
 builder.Services.AddProductApplication();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddEndpointsApiExplorer(); only for minimal api
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 // Configure the HTTP request pipeline.
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 app.UseHttpsRedirection();
 app.UseAuthentication();
