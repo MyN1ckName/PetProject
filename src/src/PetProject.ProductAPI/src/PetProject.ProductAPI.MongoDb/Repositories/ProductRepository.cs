@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using PetProject.ProductAPI.MongoDb.Contexts;
-using PetProject.ProductAPI.Domain.Product.Entitys;
+using PetProject.ProductAPI.Domain.Products.Entitys;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
 namespace PetProject.ProductAPI.MongoDb.Repositories;

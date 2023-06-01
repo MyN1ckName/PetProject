@@ -1,7 +1,8 @@
-﻿using PetProject.ProductAPI.Host.Controllers;
+﻿using PetProject.ProductAPI.Application;
+using PetProject.ProductAPI.Domain.Products;
+using PetProject.ProductAPI.Host.Controllers;
 using PetProject.ProductAPI.MongoDb.Contexts;
 using PetProject.ProductAPI.MongoDb.Repositories;
-using PetProject.ProductAPI.Application;
 using PetProject.ProductAPI.Application.Services;
 using PetProject.ProductAPI.Application.Contracts.Dto;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
@@ -22,10 +23,13 @@ public class ProductControllerTests : IntegrationTest
         };
         _dbContext = new ProductApiDbContext(dbContextOptions);
         var productRepository = new ProductRepository(_dbContext);
+        var manufacturerRepository = new ManufacturerRepository(_dbContext);
+        var productManager = new ProductManager(manufacturerRepository);
 
         var productAppService = new ProductAppService(
             CreateTestLogger<ProductAppService>(),
             productRepository,
+            productManager,
             CreateTestMapper<AutomapperProfile>());
 
         _controller = new ProductController(

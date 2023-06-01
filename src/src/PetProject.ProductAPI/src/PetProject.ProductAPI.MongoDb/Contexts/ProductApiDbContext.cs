@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using PetProject.ProductAPI.Domain.Product.Entitys;
+using PetProject.ProductAPI.Domain.Products.Entitys;
 using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
 
 namespace PetProject.ProductAPI.MongoDb.Contexts
