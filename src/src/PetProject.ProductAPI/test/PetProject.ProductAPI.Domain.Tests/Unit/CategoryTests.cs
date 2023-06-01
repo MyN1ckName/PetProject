@@ -1,4 +1,6 @@
-﻿namespace PetProject.ProductAPI.Domain.Tests.Unit;
+﻿using PetProject.ProductAPI.Domain.Products.ValueObjects;
+
+namespace PetProject.ProductAPI.Domain.Tests.Unit;
 
 public class CategoryTests
 {

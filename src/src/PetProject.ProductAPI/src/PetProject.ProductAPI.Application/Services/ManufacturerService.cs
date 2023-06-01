@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using AutoMapper;
-using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
+using PetProject.ProductAPI.Domain.Manufacturers.Entitys;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Manufacturer;

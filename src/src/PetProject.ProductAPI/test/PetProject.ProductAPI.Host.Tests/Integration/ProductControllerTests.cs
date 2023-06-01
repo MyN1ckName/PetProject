@@ -5,7 +5,7 @@ using PetProject.ProductAPI.MongoDb.Contexts;
 using PetProject.ProductAPI.MongoDb.Repositories;
 using PetProject.ProductAPI.Application.Services;
 using PetProject.ProductAPI.Application.Contracts.Dto;
-using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
+using PetProject.ProductAPI.Domain.Manufacturers.Entitys;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Host.Tests.Integration;
@@ -71,14 +71,15 @@ public class ProductControllerTests : IntegrationTest
         // Arrange
         await ClearDatabaseAsync();
 
-        var manafacturerId = await AddTestManufacturerAsync();
+        var manufacturer1Id = await AddTestManufacturerAsync();
+        var manufacturer2Id = await AddTestManufacturerAsync();
 
         var insertProduct = new CreateProductDto
         {
             Name = "product test name",
             Category = "test category",
             Price = 99.99f,
-            ManufacturerId = manafacturerId,
+            ManufacturerId = manufacturer1Id,
         };
         var token = new CancellationTokenSource().Token;
         var id = (((await _controller.InsertOneAsync(insertProduct, token)) as ObjectResult)!.Value as EntityDto<Guid>)!.Id;
@@ -88,12 +89,14 @@ public class ProductControllerTests : IntegrationTest
             Id = id,
             Name = "new product test name",
             Category = "new test category",
-            Price = 999.99f
+            Price = 999.99f,
+            ManufacturerId = manufacturer2Id,
         };
 
         productUpdate.Name.Should().NotBe(insertProduct.Name);
         productUpdate.Category.Should().NotBe(insertProduct.Category);
         Math.Round(productUpdate.Price, 2).Should().NotBe(Math.Round(insertProduct.Price, 2));
+        productUpdate.ManufacturerId.Should().Be(manufacturer2Id);
 
         //Act
         var sut = await _controller.ReplaceOneAsync(productUpdate, token);

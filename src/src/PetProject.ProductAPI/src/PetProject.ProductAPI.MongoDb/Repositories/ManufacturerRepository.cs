@@ -1,5 +1,5 @@
 ﻿using PetProject.ProductAPI.MongoDb.Contexts;
-using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
+using PetProject.ProductAPI.Domain.Manufacturers.Entitys;
 using PetProject.ProductAPI.Domain.Interfaces.Repositories;
 
 namespace PetProject.ProductAPI.MongoDb.Repositories;

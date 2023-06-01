@@ -1,6 +1,6 @@
-﻿using PetProject.ProductAPI.Domain.Manufacturer.ValueObjects;
+﻿using PetProject.ProductAPI.Domain.Manufacturers.ValueObjects;
 
-namespace PetProject.ProductAPI.Domain.Manufacturer.Entitys;
+namespace PetProject.ProductAPI.Domain.Manufacturers.Entitys;
 
 public class Manufacturer : Entity<Guid>
 {

@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PetProject.ProductAPI.Domain\PetProject.ProductAPI.Domain.csproj" />
+    <ProjectReference Include="..\..\src\PetProject.ProductAPI.MongoDb\PetProject.ProductAPI.MongoDb.csproj" />
   </ItemGroup>
 
 </Project>

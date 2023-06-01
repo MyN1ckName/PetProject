@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PetProject.ProductAPI.Domain.Products.Entitys;
-using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
+using PetProject.ProductAPI.Domain.Manufacturers.Entitys;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 using PetProject.ProductAPI.Application.Contracts.Dto.Manufacturer;
 
