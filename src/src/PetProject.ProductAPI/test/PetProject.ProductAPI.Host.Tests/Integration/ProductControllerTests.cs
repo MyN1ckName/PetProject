@@ -5,6 +5,7 @@ using PetProject.ProductAPI.MongoDb.Contexts;
 using PetProject.ProductAPI.MongoDb.Repositories;
 using PetProject.ProductAPI.Application.Services;
 using PetProject.ProductAPI.Application.Contracts.Dto;
+using PetProject.ProductAPI.Domain.Manufacturer.Entitys;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
 
 namespace PetProject.ProductAPI.Host.Tests.Integration;
@@ -43,11 +44,14 @@ public class ProductControllerTests : IntegrationTest
         // Arrange
         await ClearDatabaseAsync();
 
+        var manafacturerId = await AddTestManufacturerAsync();
+
         var product = new CreateProductDto
         {
             Name = "product test name",
             Category = "test category",
             Price = 99.99f,
+            ManufacturerId = manafacturerId,
         };
         var token = new CancellationTokenSource().Token;
 
@@ -67,11 +71,14 @@ public class ProductControllerTests : IntegrationTest
         // Arrange
         await ClearDatabaseAsync();
 
+        var manafacturerId = await AddTestManufacturerAsync();
+
         var insertProduct = new CreateProductDto
         {
             Name = "product test name",
             Category = "test category",
             Price = 99.99f,
+            ManufacturerId = manafacturerId,
         };
         var token = new CancellationTokenSource().Token;
         var id = (((await _controller.InsertOneAsync(insertProduct, token)) as ObjectResult)!.Value as EntityDto<Guid>)!.Id;
@@ -108,11 +115,14 @@ public class ProductControllerTests : IntegrationTest
         // Arrange
         await ClearDatabaseAsync();
 
+        var manafacturerId = await AddTestManufacturerAsync();
+
         var insertProduct = new CreateProductDto
         {
             Name = "product test name",
             Category = "test category",
             Price = 99.99f,
+            ManufacturerId = manafacturerId,
         };
         var token = new CancellationTokenSource().Token;
         var id = (((await _controller.InsertOneAsync(insertProduct, token)) as ObjectResult)!.Value as EntityDto<Guid>)!.Id;
@@ -128,6 +138,16 @@ public class ProductControllerTests : IntegrationTest
         await act.Should().ThrowAsync<Exception>();
     }
 
-    private async Task ClearDatabaseAsync() =>
+    private async Task ClearDatabaseAsync()
+    {
         await _dbContext.Product.Database.DropCollectionAsync(nameof(_dbContext.Product));
+        await _dbContext.Manufacturer.Database.DropCollectionAsync(nameof(_dbContext.Manufacturer));
+    }
+
+    private async Task<Guid> AddTestManufacturerAsync()
+    {
+        var manafacturer = Manufacturer.Create("test_manafacturer", "https://example.com");
+        await _dbContext.Manufacturer.InsertOneAsync(manafacturer);
+        return manafacturer.Id;
+    }
 }
