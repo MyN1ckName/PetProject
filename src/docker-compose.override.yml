@@ -59,8 +59,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: https://+:443;http://+:80
       AUTH_SERVER: http://identityserver:80
-      CONNECTION_STRING: mongodb://host.docker.internal:27017
-      DATABASE_NAME: ProductApiDatabase
+      CONNECTION_STRING: mongodb://host.docker.internal:27017/ProductApiDatabase
       SEQ_SERVER_URL: http://seq:80
     ports:
       - '5002:80'

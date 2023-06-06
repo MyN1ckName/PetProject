@@ -17,7 +17,6 @@ builder.Services.AddControllers(options =>
 builder.Services.AddProductApiMongoDb(options =>
 {
     options.ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING")!;
-    options.DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME")!;
 });
 IdentityModelEventSource.ShowPII = true;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

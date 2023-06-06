@@ -12,7 +12,8 @@ public abstract class BaseDbContext : IDbContext
             throw new ArgumentNullException(nameof(options));
 
         var client = new MongoClient(options.ConnectionString);
-        _database = client.GetDatabase(options.DatabaseName);
+        var databaseName = MongoUrl.Create(options.ConnectionString).DatabaseName;
+        _database = client.GetDatabase(databaseName);
     }
 
     public virtual IMongoCollection<T> Collection<T>()

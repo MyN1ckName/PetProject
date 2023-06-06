@@ -14,8 +14,7 @@ public class ProductManagerTests
     {
         var dbContextOptions = new DbContextOptions()
         {
-            ConnectionString = "mongodb://localhost:27017",
-            DatabaseName = "ProductApiDatabase-TEST"
+            ConnectionString = "mongodb://localhost:27017/ProductApiDatabase-TEST",
         };
         _dbContext = new ProductApiDbContext(dbContextOptions);
         var manufacturerRepository = new ManufacturerRepository(_dbContext);
