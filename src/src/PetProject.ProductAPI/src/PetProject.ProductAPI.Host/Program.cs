@@ -1,10 +1,11 @@
+using System.Reflection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using PetProject.ProductAPI.MongoDb.Extensions;
 using PetProject.ProductAPI.Application.Extensions;
 using PetProject.ProductAPI.Host.Extensions;
 using PetProject.ProductAPI.Host.ExceptionFilters;
-using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddSerilog(builder.Configuration);
@@ -19,8 +20,8 @@ builder.Services.AddProductApiMongoDb(options =>
     options.DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME")!;
 });
 IdentityModelEventSource.ShowPII = true;
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
     {
         options.Authority = Environment.GetEnvironmentVariable("AUTH_SERVER");
 

@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using PetProject.ProductAPI.Application.Contracts.Dto;
 using PetProject.ProductAPI.Application.Contracts.Interfaces;
 using PetProject.ProductAPI.Application.Contracts.Dto.Product;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PetProject.ProductAPI.Host.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    [Authorize(Policy = "product-api")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "product-api")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger _logger;
